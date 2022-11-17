@@ -1,0 +1,30 @@
+<h1> la liste de formation de la classe {{classe}} dans la salle {{salle}} </h1> 
+<img src="{{ asset('img/emna.jpg') }}" alt="student" >
+
+
+{% if tableDeFormation is empty  %}
+<h6> Pas de formation </h6>
+{% else %}
+{% for i in tableDeFormation %}
+{% if i.Description == "theorique"%}
+ ref: {{i.ref}}  titre: {{i.Titre | upper }} Description: {{i.Description}}  nbrParticipant: {{i.nb_participants}} 
+ Participer:
+ {% if i.nb_participants == 0 %} <a href="{{path('app_reservation')}}" > Participer </a> 
+ {% else %} complet 
+ {% endif %}
+  <br>
+
+{% endif %}
+{% endfor %} 
+{% endif %}
+<h5> nbr de formation : {{tableDeFormation | length}} </h5>
+{% set x=0 %}
+{{x }}
+
+{% set somme = 0 %}
+{% for i in tableDeFormation %}
+{% set somme = somme + i.nb_participants %}
+{% endfor %}
+<h5> nbr de participants : {{somme}} </h5> 
+
+<h4> la formation qui a le plus grand nombre de participants :  {{ tableDeFormation |sort((a, b) => a.nb_participants < b.nb_participants)|column('Titre').0 }}  </h4>

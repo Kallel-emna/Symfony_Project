@@ -1,0 +1,12 @@
+<h2> Classroom</h2>
+id: {{showClassromm.id}}
+name: {{showClassromm.name}}
+description: {{showClassromm.description}}
+
+<h2> list Student</h2>
+{% for s in  tabStudent %}
+    nce: {{ s.nce }}
+    username: {{ s.username }}
+    moyenne: {{ s.moyenne }}
+<br>
+{%endfor%}  
